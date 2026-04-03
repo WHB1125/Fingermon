@@ -1,0 +1,43 @@
+FingerMon Product Requirements Document (PRD)
+1. Sprint Goal
+To achieve a complete hardware loop on the M5Stack CoreS3: using the Unit QR to scan physical cards and trigger UI state transitions, while utilizing the Unit Gesture for basic touch-free feedback.
+
+2. User Stories
+As a student working at a desk for long hours, I want to wave my hand over the device when I feel tired so that I can see my FingerMon react happily, providing instant emotional comfort.
+
+As a user who loves collecting, I want to scan a new physical "Entity Card" to "capture" a new pet on the screen, experiencing an Amiibo-like sense of ritual.
+
+As an efficiency-focused user, I want the entire interaction (scanning or waving) to be completed rapidly with immediate feedback, so I don't have to interrupt my study workflow for too long.
+
+3. Feature List (MoSCoW)
+Note: Maximum 3 Must-haves for this sprint.
+
+[M] Must-have (MVP Focus):
+
+Hardware Driver Integration: Successfully connect and drive the Unit QR and Unit Gesture sensors, printing the recognized signals in the serial terminal.
+
+Core State Machine Logic: Implement basic logic transitions from "Idle State" to "Scan Feedback" or "Gesture Interaction".
+
+Placeholder UI Display: Successfully load and render the pre-collected pixel-art Pokémon UI assets on the 320x240 CoreS3 screen.
+
+[S] Should-have:
+
+Local Data Storage: Save the pet's basic level/energy data in the M5Stack's flash memory so it persists after rebooting.
+
+Interactive Audio: Add simple 8-bit sound effects (e.g., a short beep for scanning) via the CoreS3 speaker.
+
+
+4. Initial Architecture
+Hardware Layer:
+
+Main Controller: M5Stack CoreS3 (Handles logic processing and screen rendering).
+
+Input Modules: Unit QR (Reads physical assets); Unit Gesture (Captures touch-free directional commands).
+
+Logic Layer:
+
+Event-Driven Model: When a sensor detects a valid signal (e.g., a specific QR code or an upward swipe), it triggers a system interrupt and executes the corresponding state machine transition function.
+
+Presentation Layer:
+
+Sprite Animation: Loops pixel-art image sequences based on the current system state (e.g., playing a "chewing" animation during the FEED_STATE).
